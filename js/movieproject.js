@@ -15,8 +15,10 @@ $(document).ready(function () {
                     <div class="card" style="width: 30rem;" >
                         <img src="${movie.Poster}" class="card-img-top" alt="poster">
                             <div class="card-body">
-                                <h5 class="card-title">${movie.Title}</h5>
-                                <p class="card-text">${movie.Plot}</p>
+                                <h5 class="card-title">${movie.Title} (${movie.Year})</h5>
+                                <p class="card-text"> Description: ${movie.Plot}</p>
+                                <p class="card-text">Ratings: ${movie.Ratings[0].Value}</p>
+
                             </div>
                     </div>`,)
                      })
