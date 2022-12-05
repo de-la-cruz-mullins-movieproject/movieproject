@@ -14,6 +14,9 @@ $(document).ready(function () {
                             <div class="card-body">
                                 <h5 class="card-title">${movie.Title}</h5>
                                 <p class="card-text">${movie.Plot}</p>
+                                p class="card-text">Ratings: ${movie.Ratings[0].Value}</p>
+                                <p class="card-text"> Genre: ${movie.Genre}</p>
+
                             </div>
                     </div>
                 </div>`)
