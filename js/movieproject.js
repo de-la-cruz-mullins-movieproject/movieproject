@@ -10,7 +10,7 @@ $(document).ready(function () {
             console.log(data);
             data.forEach((movie) => {
                 console.log(movie);
-                $('#movieContainer').append(`<div class="d-flex flex-column" id="movie"><img src="" alt=""><h5><span id="movieTitle"></span></h5><p><span id="movieDesc"></span></p></div>`)
+                $('#movieContainer').append(`<div class="col-2" id="movie"><img src="${movie.Poster}" alt=""><h5>${movie.Title}</h5><p>${movie.Plot}</p></div>`)
             })
         })
     })
