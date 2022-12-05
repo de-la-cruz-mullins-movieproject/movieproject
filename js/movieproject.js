@@ -45,15 +45,15 @@ $(document).ready(function () {
         })
     }
 
-    function deleteMovie() {
-        fetch('https://green-peppermint-quarter.glitch.me/movies/' + 4).then((response) => {
+    function deleteMovie(id) {
+        fetch('https://green-peppermint-quarter.glitch.me/movies/' + id).then((response) => {
             response.json().then((data) => {
                 console.log(data);
                 // let filteredMovie = data.filter(function(movie){
                 //     return movie.id === 1;
                 // })
                 // console.log(filteredMovie);
-                const url = 'https://green-peppermint-quarter.glitch.me/movies/' + 4;
+                const url = 'https://green-peppermint-quarter.glitch.me/movies/' + id;
                 const options = {
                     method: 'DELETE',
                     headers: {
