@@ -18,6 +18,8 @@ $(document).ready(function () {
                                 <h5 class="card-title">${movie.Title} (${movie.Year})</h5>
                                 <p class="card-text"> Description: ${movie.Plot}</p>
                                 <p class="card-text">Ratings: ${movie.Ratings[0].Value}</p>
+                                <p class="card-text"> Genre: ${movie.Genre}</p>
+
 
                             </div>
                     </div>`,)
