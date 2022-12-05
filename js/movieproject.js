@@ -3,12 +3,10 @@
 $(document).ready(function () {
     setTimeout(function () {
         fetch('https://green-peppermint-quarter.glitch.me/movies').then((response) => {
-            console.log("ran");
             $('.loader').addClass('d-none');
             response.json().then((data) => {
                 console.log(data);
                 data.forEach((movie) => {
-                    console.log(movie);
                     $('#movieContainer').append(
                         `<div class=" d-flex col-2" id="movie">
                     <div class="card" style="width: 30rem;" >
@@ -17,7 +15,8 @@ $(document).ready(function () {
                                 <h5 class="card-title">${movie.Title}</h5>
                                 <p class="card-text">${movie.Plot}</p>
                             </div>
-                    </div>`,)
+                    </div>
+                </div>`)
                 })
             })
         })
@@ -40,11 +39,32 @@ $(document).ready(function () {
                     body: JSON.stringify(newMovie)
                 };
                 fetch(url, options)
-                    .then( response => response.json()).then(data => console.log(data)) /* review was created successfully */
-                    .catch( error => console.error(error) ); /* handle errors */
+                    .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
+                    .catch(error => console.error(error)); /* handle errors */
+            })
+        })
+    }
+
+    function deleteMovie() {
+        fetch('https://green-peppermint-quarter.glitch.me/movies/' + 4).then((response) => {
+            response.json().then((data) => {
+                console.log(data);
+                // let filteredMovie = data.filter(function(movie){
+                //     return movie.id === 1;
+                // })
+                // console.log(filteredMovie);
+                const url = 'https://green-peppermint-quarter.glitch.me/movies/' + 4;
+                const options = {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+                fetch(url, options)
+                    .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
+                    .catch(error => console.error(error)); /* handle errors */
             })
         })
     }
 })
-
-
