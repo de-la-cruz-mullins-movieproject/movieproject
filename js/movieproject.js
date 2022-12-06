@@ -1,11 +1,12 @@
 // 'use strict';
 
-$(document).ready(function () {
+$(document).ready(() => {
 
-    setTimeout(function () {
+    setTimeout(() => {
         loadMovies();
     }, 2000);
 
+    let currentMovies = [];
     function loadMovies() {
         $('#movieContainer').html('');
         fetch('https://green-peppermint-quarter.glitch.me/movies').then((response) => {
@@ -13,8 +14,34 @@ $(document).ready(function () {
             response.json().then((data) => {
                 console.log(data);
                 data.forEach((movie) => {
-                    $('#movieContainer').append(
-                        `<div class=" d-flex col-2" id="movie">
+                    currentMovies.push(movie);
+                })
+                filterMovies();
+            })
+        })
+    }
+
+    let filteredMovies = [];
+    function filterMovies(){
+        // let userSearchName = $('#userSearchName').val();
+        // let userSearchGenre = $('#userSearchGenre').val();
+        // let userSearchYear = $('#userSearchYear'').val();
+        let userSearchName = '';
+        let userSearchGenre = '';
+        let userSearchYear = '';
+        currentMovies.filter((movie) => {
+            if (movie.Title.toLowerCase().includes(userSearchName.toLowerCase()) || (movie.Genre.toLowerCase().includes(userSearchGenre.toLowerCase())) || (movie.Year.includes(userSearchYear))){
+                filteredMovies.push(movie);
+            }
+        })
+        createMovieCards();
+    }
+
+    function createMovieCards(){
+        $('#movieContainer').html(' ');
+        filteredMovies.forEach((movie) => {
+        $('#movieContainer').append(
+            `<div class=" d-flex col-2" id="movie">
                     <div class="card" style="width: 30rem;" >
                         <img src="${movie.Poster}" class="card-img-top" alt="poster">
                             <div class="card-body">
@@ -25,7 +52,24 @@ $(document).ready(function () {
                             </div>
                     </div>
                 </div>`)
-                })
+        })
+    }
+
+    function editMovie(id) {
+        fetch('https://green-peppermint-quarter.glitch.me/movies/' + id).then((response) => {
+            response.json().then((data) => {
+                console.log(data);
+                const url = 'https://green-peppermint-quarter.glitch.me/movies/' + id;
+                const options = {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+                fetch(url, options)
+                    .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
+                    .catch(error => console.error(error)); /* handle errors */
             })
         })
     }
@@ -52,6 +96,14 @@ $(document).ready(function () {
             })
         })
     }
+
+    $('.movieSearch').click(function(e){
+        e.preventDefault();
+        searchMovie($('.movieSearchBar').val());
+        setTimeout(function (){
+            loadMovies();
+        }, 1000)
+    })
 
     function deleteMovie(id) {
         fetch('https://green-peppermint-quarter.glitch.me/movies/' + id).then((response) => {
