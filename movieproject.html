@@ -11,12 +11,17 @@
     <link rel="stylesheet" href="css/movieproject.css">
 </head>
 <body>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c270c388ae5e6debc9024592e800b42afb68adf6
 <!--navbar-->
 <nav class="navbar bg-light">
     <div class="container-fluid">
         <a class="navbar-brand"><h2><i>White Lamb Productions</i></h2></a>
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="">Add a Movie</button>
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="">Add a Movie
+        </button>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -61,7 +66,8 @@
         </div>
 
         <form class="d-flex" role="search">
-            <input class="form-control me-2 movieSearchBar" type="search" placeholder="Search Movies" aria-label="Search">
+            <input class="form-control me-2 movieSearchBar" type="search" placeholder="Search Movies"
+                   aria-label="Search">
             <button class="btn btn-outline-success movieSearch" type="submit">Search</button>
         </form>
     </div>
@@ -85,57 +91,62 @@
 
     <!--Movie genre dropdown-->
     <div class="btn-group">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Sort by Genre:
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Comedy</a></li>
-            <li><a class="dropdown-item" href="#">Horror</a></li>
-            <li><a class="dropdown-item" href="#">Sci-Fi</a></li>
-            <li><a class="dropdown-item" href="#">Adventure</a></li>
-            <li><a class="dropdown-item" href="#">Drama</a></li>
-            <li><a class="dropdown-item" href="#">Mystery</a></li>
-            <li><a class="dropdown-item" href="#">Animation</a></li>
-            <li><a class="dropdown-item" href="#">Fantasy</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">All</a></li>
-        </ul>
+        <label>
+            <button class="btn btn-danger"
+                    aria-expanded="false">
+                Sort by Genre:
+                <select class="genreDropdown">
+                    <option class="dropdown-item" value="" selected>All</option>
+                    <option class="dropdown-item" value="Action">Action</option>
+                    <option class="dropdown-item" value="Comedy">Comedy</option>
+                    <option class="dropdown-item" value="Horror">Horror</option>
+                    <option class="dropdown-item" value="Sci-Fi">Sci-Fi</option>
+                    <option class="dropdown-item" value="Adventure">Adventure</option>
+                    <option class="dropdown-item" value="Drama">Drama</option>
+                    <option class="dropdown-item" value="Mystery">Mystery</option>
+                    <option class="dropdown-item" value="Animation">Animation</option>
+                    <option class="dropdown-item" value="Fantasy">Fantasy</option>
+                </select>
+            </button>
+        </label>
     </div>
     <!--Movie genre dropdown end-->
 
     <!--Movie title input-->
     <div class="input-group mb-3" style="width: 40%">
         <span class="input-group-text" id="inputGroup-sizing-default">Enter Movie Name Here:</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <input type="text" class="form-control userSearchName" aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-default">
     </div>
     <!--Movie title input end-->
 
     <!--Review Dropdown-->
-    <div class="btn-review">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Sort by Rating:
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">1 & Up</a></li>
-            <li><a class="dropdown-item" href="#">2 & Up</a></li>
-            <li><a class="dropdown-item" href="#">3 & Up</a></li>
-            <li><a class="dropdown-item" href="#">4 & Up</a></li>
-            <li><a class="dropdown-item" href="#">5 & Up</a></li>
-            <li><a class="dropdown-item" href="#">6 & Up</a></li>
-            <li><a class="dropdown-item" href="#">7 & Up</a></li>
-            <li><a class="dropdown-item" href="#">8 & Up</a></li>
-            <li><a class="dropdown-item" href="#"> 9 & Up</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">All</a></li>
-        </ul>
+    <div class="btn-group">
+        <label>
+            <button class="btn btn-danger"
+                    aria-expanded="false">
+                Sort by Genre:
+                <select class="ratingDropdown">
+                    <option class="dropdown-item" value="" selected>All</option>
+                    <option class="dropdown-item" value="1">1 & Up</option>
+                    <option class="dropdown-item" value="2">2 & Up</option>
+                    <option class="dropdown-item" value="3">3 & Up</option>
+                    <option class="dropdown-item" value="4">4 & Up</option>
+                    <option class="dropdown-item" value="5">5 & Up</option>
+                    <option class="dropdown-item" value="6">6 & Up</option>
+                    <option class="dropdown-item" value="7">7 & Up</option>
+                    <option class="dropdown-item" value="8">8 & Up</option>
+                    <option class="dropdown-item" value="9">9 & Up</option>
+                </select>
+            </button>
+        </label>
     </div>
     <!--Rating dropdown end-->
 
     <div class="row justify-content-center">
         <!--loader-->
         <div class="loader col-12">
-<!--            <p>Getting your favorite movies...</p>-->
+            <!--            <p>Getting your favorite movies...</p>-->
         </div>
 
         <div class="col-12 flex-wrap" id="movieContainer" style="display: flex">
