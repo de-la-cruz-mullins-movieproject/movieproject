@@ -53,15 +53,15 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add New Movie</button>
+                        <button type="button" class="btn btn-primary" id="createNewMovie">Add New Movie</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search Movies" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2 movieSearchBar" type="search" placeholder="Search Movies" aria-label="Search">
+            <button class="btn btn-outline-success movieSearch" type="submit">Search</button>
         </form>
     </div>
 
@@ -71,7 +71,7 @@
     <div class="row justify-content-center">
         <!--loader-->
         <div class="loader col-12">
-            <p>Getting your favorite movies...</p>
+<!--            <p>Getting your favorite movies...</p>-->
         </div>
 
         <div class="col-12 flex-wrap" id="movieContainer" style="display: flex">
