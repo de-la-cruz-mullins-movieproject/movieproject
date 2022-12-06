@@ -39,7 +39,7 @@ $(document).ready(() => {
     function createMovieCards(filteredMovies) {
         filteredMovies.forEach((movie) => {
             $('#movieContainer').append(
-                `<div class=" d-flex col-2" id="movie">
+                `<div class=" d-flex col-2" id="movie"  style="height: 450px; width: 300px;" >
                     <div class="card" style="width: 30rem;" >
                     <div class="flip-card">
   <div class="flip-card-inner">
