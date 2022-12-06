@@ -20,7 +20,6 @@ $(document).ready(function () {
                                 <p class="card-text">Ratings: ${movie.Ratings[0].Value}</p>
                                 <p class="card-text"> Genre: ${movie.Genre}</p>
 
-
                             </div>
                     </div>`,)
                      })
