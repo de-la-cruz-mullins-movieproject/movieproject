@@ -11,10 +11,15 @@
     <link rel="stylesheet" href="css/movieproject.css">
 </head>
 <body>
+<<<<<<< HEAD
 <!--loader-->
 <!--<div class="loader">-->
 <!--    <p>Getting your favorite movies...</p>-->
 <!--</div>-->
+=======
+
+
+>>>>>>> 3cc2406d22c102145e966aff5d7f82a0c691c331
 <!--navbar-->
 <nav class="navbar bg-light">
     <div class="container-fluid">
@@ -55,23 +60,59 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+<<<<<<< HEAD
                         <button type="button" class="btn btn-primary">Add New Movie</button>
+=======
+                        <button type="button" class="btn btn-primary" id="createNewMovie">Add New Movie</button>
+>>>>>>> 3cc2406d22c102145e966aff5d7f82a0c691c331
                     </div>
                 </div>
             </div>
         </div>
 
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search Movies" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2 movieSearchBar" type="search" placeholder="Search Movies" aria-label="Search">
+            <button class="btn btn-outline-success movieSearch" type="submit">Search</button>
         </form>
     </div>
 
 </nav>
 
 <main>
+    <!--Navbar end-->
+
+    <!--Movie genre dropdown-->
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort by Genre:
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Comedy</a></li>
+            <li><a class="dropdown-item" href="#">Horror</a></li>
+            <li><a class="dropdown-item" href="#">Sci-Fi</a></li>
+            <li><a class="dropdown-item" href="#">Adventure</a></li>
+            <li><a class="dropdown-item" href="#">Drama</a></li>
+            <li><a class="dropdown-item" href="#">Mystery</a></li>
+            <li><a class="dropdown-item" href="#">Animation</a></li>
+            <li><a class="dropdown-item" href="#">Fantasy</a></li>
+
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">All</a></li>
+        </ul>
+    </div>
+    <!--Movie genre dropdown end-->
+
+    <!--Movie title dropdown-->
+
     <div class="row justify-content-center">
-        <div class="col-11" id="movieContainer" style="display: flex">
+        <!--loader-->
+        <div class="loader col-12">
+<!--            <p>Getting your favorite movies...</p>-->
+        </div>
+
+        <div class="col-12 flex-wrap" id="movieContainer" style="display: flex">
+
         </div>
     </div>
 </main>
