@@ -22,30 +22,32 @@ $(document).ready(() => {
     }
 
     function filterMovies(currentMovies) {
-        let filteredMovies = [];
         // let userSearchName = $('#userSearchName').val();
-        // let userSearchGenre = $('#userSearchGenre').val();
+        let userSearchGenre = $('.genreDropdown').val();
         // let userSearchYear = $('#userSearchYear'').val();
         let userSearchName = '';
-        let userSearchGenre = '';
+        // let userSearchGenre = '';
         let userSearchYear = '';
-        currentMovies.filter((movie) => {
-            if (movie.Title.toLowerCase().includes(userSearchName.toLowerCase()) || (movie.Genre.toLowerCase().includes(userSearchGenre.toLowerCase())) || (movie.Year.includes(userSearchYear))) {
-                filteredMovies.push(movie);
-            }
+        let filteredMovies = currentMovies.filter((movie) => {
+            return movie.Title.toLowerCase().includes(userSearchName.toLowerCase()) && (movie.Genre.includes(userSearchGenre)) && (movie.Year.includes(userSearchYear))
         })
         createMovieCards(filteredMovies);
     }
 
+    $('.genreDropdown').change(function(){
+        loadMovies();
+    })
+
+
+
     function createMovieCards(filteredMovies) {
-        $('#movieContainer').html(' ');
         filteredMovies.forEach((movie) => {
             $('#movieContainer').append(
                 `<div class=" d-flex col-2" id="movie">
                     <div class="card" style="width: 30rem;" >
                         <img src="${movie.Poster}" class="card-img-top" alt="poster">
                             <div class="card-body">
-                                <h5 className="card-title">${movie.Title} (${movie.Year}) </h5>
+                                <h5 class="card-title">${movie.Title} (${movie.Year}) </h5>
                                 <p class="card-text">${movie.Plot}</p>
                                 <p class="card-text">Ratings: ${movie.Ratings[0].Value}</p>
                                 <p class="card-text"> Genre: ${movie.Genre}</p>
@@ -66,9 +68,8 @@ $(document).ready(() => {
 </svg>
 </button>
 </div>
-
-                    </div>
-                </div>`)
+</div>
+</div>`)
         })
     }
 
@@ -122,7 +123,7 @@ $(document).ready(() => {
         }, 1000)
     })
 
-    $("#deleteButton").click(function (e) {
+    $(`#deleteButton`).click(function (e) {
         e.preventDefault();
         console.log('ran delete function')
         deleteMovie($('.deleteButton').val());
@@ -131,10 +132,9 @@ $(document).ready(() => {
         }, 1000);
     })
 
-    $('.editButton').click(function(e){
+    $('.editButton').click(function (e) {
         console.log("edit button");
     })
-
 
     function deleteMovie(id) {
         fetch('https://green-peppermint-quarter.glitch.me/movies/' + id).then((response) => {
