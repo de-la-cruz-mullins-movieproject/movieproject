@@ -43,6 +43,7 @@ $(document).ready(() => {
         $('#movieContainer').append(
             `<div class=" d-flex col-2" id="movie">
                     <div class="card" style="width: 30rem;" >
+                    
                         <img src="${movie.Poster}" class="card-img-top" alt="poster">
                             <div class="card-body">
                                 <h5 class="card-title">${movie.Title} (${movie.Year})</h5>
