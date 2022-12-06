@@ -80,16 +80,16 @@
                     aria-expanded="false">
                 Sort by Genre:
                 <select class="genreDropdown">
+                    <option class="dropdown-item" value="" selected>All</option>
                     <option class="dropdown-item" value="Action">Action</option>
                     <option class="dropdown-item" value="Comedy">Comedy</option>
                     <option class="dropdown-item" value="Horror">Horror</option>
                     <option class="dropdown-item" value="Sci-Fi">Sci-Fi</option>
                     <option class="dropdown-item" value="Adventure">Adventure</option>
                     <option class="dropdown-item" value="Drama">Drama</option>
-                    <option class="dropdown-item" value="MYstery">Mystery</option>
+                    <option class="dropdown-item" value="Mystery">Mystery</option>
                     <option class="dropdown-item" value="Animation">Animation</option>
                     <option class="dropdown-item" value="Fantasy">Fantasy</option>
-                    <option class="dropdown-item" value="All">All</option>
                 </select>
             </button>
         </label>
@@ -99,31 +99,31 @@
     <!--Movie title input-->
     <div class="input-group mb-3" style="width: 40%">
         <span class="input-group-text" id="inputGroup-sizing-default">Enter Movie Name Here:</span>
-        <input type="text" class="form-control" aria-label="Sizing example input"
+        <input type="text" class="form-control userSearchName" aria-label="Sizing example input"
                aria-describedby="inputGroup-sizing-default">
     </div>
     <!--Movie title input end-->
 
     <!--Review Dropdown-->
-    <div class="btn-review">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Sort by Rating:
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">1 & Up</a></li>
-            <li><a class="dropdown-item" href="#">2 & Up</a></li>
-            <li><a class="dropdown-item" href="#">3 & Up</a></li>
-            <li><a class="dropdown-item" href="#">4 & Up</a></li>
-            <li><a class="dropdown-item" href="#">5 & Up</a></li>
-            <li><a class="dropdown-item" href="#">6 & Up</a></li>
-            <li><a class="dropdown-item" href="#">7 & Up</a></li>
-            <li><a class="dropdown-item" href="#">8 & Up</a></li>
-            <li><a class="dropdown-item" href="#"> 9 & Up</a></li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">All</a></li>
-        </ul>
+    <div class="btn-group">
+        <label>
+            <button class="btn btn-danger"
+                    aria-expanded="false">
+                Sort by Genre:
+                <select class="ratingDropdown">
+                    <option class="dropdown-item" value="" selected>All</option>
+                    <option class="dropdown-item" value="1">1 & Up</option>
+                    <option class="dropdown-item" value="2">2 & Up</option>
+                    <option class="dropdown-item" value="3">3 & Up</option>
+                    <option class="dropdown-item" value="4">4 & Up</option>
+                    <option class="dropdown-item" value="5">5 & Up</option>
+                    <option class="dropdown-item" value="6">6 & Up</option>
+                    <option class="dropdown-item" value="7">7 & Up</option>
+                    <option class="dropdown-item" value="8">8 & Up</option>
+                    <option class="dropdown-item" value="9">9 & Up</option>
+                </select>
+            </button>
+        </label>
     </div>
     <div class="row justify-content-center">
         <!--loader-->

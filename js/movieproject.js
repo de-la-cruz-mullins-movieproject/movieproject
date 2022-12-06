@@ -22,22 +22,18 @@ $(document).ready(() => {
     }
 
     function filterMovies(currentMovies) {
-        // let userSearchName = $('#userSearchName').val();
+        let userSearchName = $('.userSearchName').val();
         let userSearchGenre = $('.genreDropdown').val();
-        // let userSearchYear = $('#userSearchYear'').val();
-        let userSearchName = '';
-        // let userSearchGenre = '';
-        let userSearchYear = '';
+        let userRating = $('.ratingDropdown').val();
         let filteredMovies = currentMovies.filter((movie) => {
-            return movie.Title.toLowerCase().includes(userSearchName.toLowerCase()) && (movie.Genre.includes(userSearchGenre)) && (movie.Year.includes(userSearchYear))
+            return movie.Title.toLowerCase().includes(userSearchName.toLowerCase()) && (movie.Genre.includes(userSearchGenre)) && (movie.Ratings[0].Value >= userRating)
         })
         createMovieCards(filteredMovies);
     }
 
-    $('.genreDropdown').change(function(){
-        loadMovies();
-    })
-
+    $('.genreDropdown').change(() => loadMovies());
+    $('.userSearchName').keyup(() => loadMovies());
+    $('.ratingDropdown').change(() => loadMovies());
 
 
     function createMovieCards(filteredMovies) {
