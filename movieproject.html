@@ -13,20 +13,21 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-red.css">
 </head>
 <body>
-<img src="Untitled%20Design.png" class="logo-image" alt="logo" width="80%" height="300px">
+<video class="video-bg" controls autoplay muted loop>
 
+    <source src="istockphoto-656747382-640_adpp_is.mp4" type="video/mp4">
+</video>
 
-<!--navbar-->
 
 <!--        <li class="w3-theme-d5">-->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none">
+    <div class="container-fluid p-0 row gx-3">
         <div class="d-flex">
             <!--Movie genre dropdown-->
             <div class="btn-group ">
                 <label>
-                    <button class="btn w3-theme-d5" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn w3-theme-d5 col" aria-haspopup="true" aria-expanded="false">
                         Sort by Genre:
                         <select class="genreDropdown">
                             <option class="dropdown-item" value="" selected>All</option>
@@ -47,8 +48,7 @@
 
             <div class="btn-group">
                 <label>
-                    <button class="btn w3-theme-d5"
-                            aria-expanded="false">
+                    <button class="btn w3-theme-d5 col" aria-expanded="false">
                         Sort by Ratings:
                         <select class="ratingDropdown">
                             <option class="dropdown-item" value="" selected>All</option>
@@ -68,76 +68,76 @@
             </div>
 
             <!--Movie title input-->
-            <div class="input-group mb-3 btn-danger" style="width: 40%">
-                <span class="input-group-text" id="inputGroup-sizing-default">Enter Movie Name Here:</span>
-                <input type="text" class="form-control userSearchName" aria-label="Sizing example input"
+            <div class="input-group mb-3 btn-danger col" style="width: 10%">
+                <span class="input-group-text w3-theme-d5" id="inputGroup-sizing-default">Enter Movie Name Here:</span>
+                <input type="text" class="form-control userSearchName " style="width: 10px"
+                       aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-default">
             </div>
-            <button type="button" class="btn w3-theme-d5" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    data-bs-whatever="">Add a Movie
-            </button>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">New Movie</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="movie-title" class="col-form-label">Movie Title:</label>
-                                    <input type="text" class="form-control" id="movie-title">
+            <div class="">
+                <button type="button" class="btn w3-theme-d5 col " data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        data-bs-whatever="">Add a Movie
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">New Movie</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
                                     <div class="mb-3">
-                                        <label for="year-released" class="col-form-label">Year Released:</label>
-                                        <input type="text" class="form-control" id="year-released">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="movie-rating" class="col-form-label">Rating:</label>
-                                        <input type="text" class="form-control" id="movie-rating">
+                                        <label for="movie-title" class="col-form-label">Movie Title:</label>
+                                        <input type="text" class="form-control" id="movie-title">
                                         <div class="mb-3">
-                                            <label for="movie-genre" class="col-form-label">Movie Genre:</label>
-                                            <input type="text" class="form-control" id="movie-genre">
+                                            <label for="year-released" class="col-form-label">Year Released:</label>
+                                            <input type="text" class="form-control" id="year-released">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="movie-rating" class="col-form-label">Rating:</label>
+                                            <input type="text" class="form-control" id="movie-rating">
+                                            <div class="mb-3">
+                                                <label for="movie-genre" class="col-form-label">Movie Genre:</label>
+                                                <input type="text" class="form-control" id="movie-genre">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="movie-description" class="col-form-label"> Movie Description:</label>
-                                    <textarea class="form-control" id="movie-description"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <!--                        <button type="button" class="btn btn-primary">Add New Movie</button>-->
+                                    <div class="mb-3">
+                                        <label for="movie-description" class="col-form-label"> Movie
+                                            Description:</label>
+                                        <textarea class="form-control" id="movie-description"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <!--                        <button type="button" class="btn btn-primary">Add New Movie</button>-->
 
-                            <button type="button" class="btn btn-primary" id="createNewMovie">Add New Movie</button>
+                                <button type="button" class="btn btn-primary" id="createNewMovie">Add New Movie</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <form class="d-flex " role="search">
-                <input class="form-control me-2 movieSearchBar " type="search" placeholder="Search Movies"
-                       aria-label="Search">
-                <button class="btn btn-outline-success movieSearch w3-theme-d5" type="submit">Search</button>
-            </form>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 movieSearchBar" type="search" placeholder="Search Movies..."
+                           aria-label="Search">
+                    <button class="btn btn-outline-success movieSearch w3-theme-d5" type="submit">Search</button>
+                </form>
+            </div>
         </div>
     </div>
 </nav>
 <!--Navbar end-->
-
-<!--Movie title input end-->
-
-
-
-<!--Dark mode end-->
+<!--loader-->
 <div class="col justify-content-center">
-    <!--loader-->
-    <div class="loader col-12">
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-12 flex-wrap" id="movieContainer" style="display: flex;">
+    <div class="loader"><h1 style="font-size:120px;"> Loading...</h1></div>
+
+    <div class="row">
+        <div class="col-12 d-flex flex-wrap justify-content-evenly" id="movieContainer">
 
         </div>
     </div>

@@ -14,6 +14,7 @@ $(document).ready(() => {
         $('#movieContainer').html('');
         fetch('https://green-peppermint-quarter.glitch.me/movies').then((response) => {
             $('.loader').addClass('d-none');
+            $('nav').removeClass('d-none');
             response.json().then((data) => {
                 console.log(data);
                 data.forEach((movie) => {
@@ -103,27 +104,23 @@ $(document).ready(() => {
                             </div>
                         </div>
                     </div>
-    <div class=" d-flex col-2" id="movie" style="height: 450px; width: 300px;">
-        <div class="card" style="width: 30rem;">
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
+    <div class=" d-flex col-2 m-3" id="movie" style="height: 450px; width: 300px;">
+        <div class="card" style="width: 30rem;" >
+            <div class="flip-card border border-3 border-dark">
+                <div class="flip-card-inner border border-3 border-dark">
+                    <div class="flip-card-front border border-3 border-dark">
                         <img src="${movie.Poster}" class="card-img-top" alt="poster">
                     </div>
-                    <div class="flip-card-back">
+                    <div class="flip-card-back border border-3 border-dark">
                         <h5 class="card-title">${movie.Title} (${movie.Year}) </h5>
                         <p class="card-text">${movie.Plot}</p>
                         <p class="card-text">Ratings: ${movie.Ratings[0].Value}</p>
                         <p class="card-text"> Genre: ${movie.Genre}</p>
                         <div class="card-icons">
-                            <button type="button" class="btn btn-primary"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#movie${movie.id}">
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#movie${movie.id}">
                                 Edit
                             </button>
-                            <button type="submit"
-                                    class="btn btn-danger deleteButton"
-                                    value="${movie.id}">
+                            <button type="submit" class="btn deleteButton btn-dark" value="${movie.id}">
                                 Delete
                                 <i class="bi bi-trash3"></i>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20"
@@ -139,21 +136,20 @@ $(document).ready(() => {
             </div>
         </div>
     </div>`);
-
             $(".moviePlotEdit" + movie.id).append(`${movie.Plot}`);
-            $('.submitEdits').click(function (e) {
-                e.preventDefault();
-                let data = {
-                    Title: $('.movieTitleEdit' + this.value).val(),
-                    Ratings: [{Value: $('.movieRatingsEdit' + this.value).val()}],
-                    Plot: $('.moviePlotEdit' + this.value).val(),
-                    Genre: $('.movieGenreEdit' + this.value).val()
-                };
-                editMovie(data, this.value);
-                setTimeout(() => {
-                    loadMovies();
-                }, 1000);
-            })
+        })
+        $('.submitEdits').click(function (e) {
+            e.preventDefault();
+            let data = {
+                Title: $('.movieTitleEdit' + this.value).val(),
+                Ratings: [{Value: $('.movieRatingsEdit' + this.value).val()}],
+                Plot: $('.moviePlotEdit' + this.value).val(),
+                Genre: $('.movieGenreEdit' + this.value).val()
+            };
+            editMovie(data, this.value);
+            setTimeout(() => {
+                loadMovies();
+            }, 1000);
         })
         $(`.deleteButton`).click(function (e) {
             e.preventDefault();
@@ -212,8 +208,6 @@ $(document).ready(() => {
             loadMovies();
         }, 1000)
     })
-
-
     $('.editButton').click(function (e) {
         console.log("edit button");
     })
