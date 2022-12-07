@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="css/movieproject.css">
 </head>
 <body>
-<img src="white-lamb-productions-low-resolution-color-logo.png" class="logo-image" alt="logo" width="80%" height="300px">
+<img src="white-lamb-productions-low-resolution-color-logo.png" class="logo-image" alt="logo" width="80%"
+     height="300px">
 <!--navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -19,7 +20,6 @@
         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 data-bs-whatever="">Add a Movie
         </button>
-
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -49,7 +49,6 @@
                                 <label for="movie-description" class="col-form-label"> Movie Description:</label>
                                 <textarea class="form-control" id="movie-description"></textarea>
                             </div>
-
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -71,38 +70,15 @@
 
 </nav>
 
-    <main>
-        <!--Navbar end-->
+<main>
+    <!--Navbar end-->
 
 
-<div class="d-flex">
-    <!--Movie genre dropdown-->
-    <div class="btn-group">
-        <label>
-            <button class="btn btn-primary" aria-haspopup="true" aria-expanded="false">
-                Sort by Genre:
-                <select class="genreDropdown">
-                    <option class="dropdown-item" value="" selected>All</option>
-                    <option class="dropdown-item" value="Action">Action</option>
-                    <option class="dropdown-item" value="Comedy">Comedy</option>
-                    <option class="dropdown-item" value="Horror">Horror</option>
-                    <option class="dropdown-item" value="Sci-Fi">Sci-Fi</option>
-                    <option class="dropdown-item" value="Adventure">Adventure</option>
-                    <option class="dropdown-item" value="Drama">Drama</option>
-                    <option class="dropdown-item" value="Mystery">Mystery</option>
-                    <option class="dropdown-item" value="Animation">Animation</option>
-                    <option class="dropdown-item" value="Fantasy">Fantasy</option>
-                </select>
-            </button>
-        </label>
-    </div>
-    <!--Movie genre dropdown end-->
-
+    <div class="d-flex">
         <!--Movie genre dropdown-->
         <div class="btn-group">
             <label>
-                <button class="btn btn-danger"
-                        aria-expanded="false">
+                <button class="btn btn-primary" aria-haspopup="true" aria-expanded="false">
                     Sort by Genre:
                     <select class="genreDropdown">
                         <option class="dropdown-item" value="" selected>All</option>
@@ -121,6 +97,7 @@
         </div>
         <!--Movie genre dropdown end-->
 
+
         <!--Movie title input-->
         <div class="input-group mb-3" style="width: 40%">
             <span class="input-group-text" id="inputGroup-sizing-default">Enter Movie Name Here:</span>
@@ -130,65 +107,12 @@
         <!--Movie title input end-->
 
 
-    <!--Review Dropdown-->
-    <div class="btn-group">
-        <label>
-            <button class="btn"
-                    aria-expanded="false">
-                Sort by Range:
-                <select class="ratingDropdown">
-                    <option class="dropdown-item" value="" selected>All</option>
-                    <option class="dropdown-item" value="1">1 & Up</option>
-                    <option class="dropdown-item" value="2">2 & Up</option>
-                    <option class="dropdown-item" value="3">3 & Up</option>
-                    <option class="dropdown-item" value="4">4 & Up</option>
-                    <option class="dropdown-item" value="5">5 & Up</option>
-                    <option class="dropdown-item" value="6">6 & Up</option>
-                    <option class="dropdown-item" value="7">7 & Up</option>
-                    <option class="dropdown-item" value="8">8 & Up</option>
-                    <option class="dropdown-item" value="9">9 & Up</option>
-                </select>
-            </button>
-        </label>
-    </div>
-    <!--Rating dropdown end-->
-<!--Flip cards-->
-    <label>
-        <div class="flip-card">
-            <input type="checkbox"  />
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <!--                    <img src="{{Image}}" style="width:100%;height:100%;object-fit: cover;">-->
-                </div>
-                <div class="flip-card-back">
-                </div>
-            </div>
-        </div>
-    </label>
-    <!--Dark mode-->
-    <div class="header">
-        <div class="select">
-            <i class="material-icons"></i>
-            <select class="select__input" id="selTheme">
-                <option value="auto">Auto</option>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-            </select>
-        </div>
-    </div>
-    <main class="main">
-</div>
-    <!--Dark mode end-->
-    <div class="col justify-content-center">
-        <!--loader-->
-        <div class="loader col-12">
-            <!--            <p>Getting your favorite movies...</p>-->
         <!--Review Dropdown-->
         <div class="btn-group">
             <label>
                 <button class="btn btn-danger"
                         aria-expanded="false">
-                    Sort by Genre:
+                    Sort by Rating:
                     <select class="ratingDropdown">
                         <option class="dropdown-item" value="" selected>All</option>
                         <option class="dropdown-item" value="1">1 & Up</option>
@@ -203,32 +127,54 @@
                     </select>
                 </button>
             </label>
-
+        </div>
+        <!--Rating dropdown end-->
+        <!--Flip cards-->
+<!--        <label>-->
+<!--            <div class="flip-card">-->
+<!--                <input type="checkbox"/>-->
+<!--                <div class="flip-card-inner">-->
+<!--                    <div class="flip-card-front">-->
+                        <!--                    <img src="{{Image}}" style="width:100%;height:100%;object-fit: cover;">-->
+<!--                    </div>-->
+<!--                    <div class="flip-card-back">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </label>-->
+        <!--Dark mode-->
+        <div class="header">
+            <div class="select">
+                <i class="material-icons"></i>
+                <select class="select__input" id="selTheme">
+                    <option value="auto">Auto</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!--Dark mode end-->
+    <div class="col justify-content-center">
+        <!--loader-->
+        <div class="loader col-12">
         </div>
         <div class="row justify-content-center">
-            <!--loader-->
-            <div class="loader col-12">
-                <!--            <p>Getting your favorite movies...</p>-->
-            </div>
-
-
-        <div class="col-12 flex-wrap" id="movieContainer" style="display: flex;">
-
-            <div class="col-12 flex-wrap" id="movieContainer" style="display: flex">
-
+            <div class="col-12 flex-wrap" id="movieContainer" style="display: flex;">
 
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <!--bootstrap JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-            crossorigin="anonymous"></script>
-    <!--jquery-->
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <!--custom JS-->
-    <script src="js/movieproject.js"></script>
+<!--bootstrap JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+<!--jquery-->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<!--custom JS-->
+<script src="js/movieproject.js"></script>
 </body>
 </html>
