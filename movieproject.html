@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="css/movieproject.css">
 </head>
 <body>
-
+<img src="white-lamb-productions-low-resolution-color-logo.png" class="logo-image" alt="logo" width="80%" height="300px">
 <!--navbar-->
-<nav class="navbar bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand"><h2><i>White Lamb Productions</i></h2></a>
         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -74,12 +74,11 @@
 <main>
     <!--Navbar end-->
 
-
+<div class="d-flex">
     <!--Movie genre dropdown-->
     <div class="btn-group">
         <label>
-            <button class="btn btn-danger"
-                    aria-expanded="false">
+            <button class="btn btn-primary" aria-haspopup="true" aria-expanded="false">
                 Sort by Genre:
                 <select class="genreDropdown">
                     <option class="dropdown-item" value="" selected>All</option>
@@ -109,9 +108,9 @@
     <!--Review Dropdown-->
     <div class="btn-group">
         <label>
-            <button class="btn btn-danger"
+            <button class="btn"
                     aria-expanded="false">
-                Sort by Genre:
+                Sort by Range:
                 <select class="ratingDropdown">
                     <option class="dropdown-item" value="" selected>All</option>
                     <option class="dropdown-item" value="1">1 & Up</option>
@@ -141,6 +140,20 @@
             </div>
         </div>
     </label>
+    <!--Dark mode-->
+    <div class="header">
+        <div class="select">
+            <i class="material-icons"></i>
+            <select class="select__input" id="selTheme">
+                <option value="auto">Auto</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+            </select>
+        </div>
+    </div>
+    <main class="main">
+</div>
+    <!--Dark mode end-->
     <div class="col justify-content-center">
         <!--loader-->
         <div class="loader col-12">
