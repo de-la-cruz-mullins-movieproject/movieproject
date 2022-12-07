@@ -39,9 +39,19 @@ $(document).ready(() => {
     function createMovieCards(filteredMovies) {
         filteredMovies.forEach((movie) => {
             $('#movieContainer').append(
-                `<div class=" d-flex col-2" id="movie">
+
+                `<div class=" d-flex col-2" id="movie"  style="height: 450px; width: 300px;" >
+                    <div class="card" style="width: 30rem;" >
+                    <div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+
+                <div class=" d-flex col-2" id="movie">
                     <div class="card">
+
                         <img src="${movie.Poster}" class="card-img-top" alt="poster">
+                            </div>
+<div class="flip-card-back">
                             <div class="card-body">
                                 <h5 class="card-title">${movie.Title} (${movie.Year}) </h5>
                                 <p class="card-text">${movie.Plot}</p>
@@ -64,6 +74,7 @@ $(document).ready(() => {
 <!--</svg>-->
 </button>
 </div>
+
 </div>
 </div>
 </div>`)
@@ -77,34 +88,109 @@ $(document).ready(() => {
             }, 1000);
         })
     }
+ 
 
-    function editMovie(id) {
-        fetch('https://green-peppermint-quarter.glitch.me/movies/' + id).then((response) => {
-            response.json().then((data) => {
-                console.log(data);
-                const url = 'https://green-peppermint-quarter.glitch.me/movies/' + id;
-                const options = {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                };
-                fetch(url, options)
-                    .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
-                    .catch(error => console.error(error)); /* handle errors */
+                            </div>
+                    </div>`,)
+
+            function editMovie(id) {
+                fetch('https://green-peppermint-quarter.glitch.me/movies/' + id).then((response) => {
+                    response.json().then((data) => {
+                        console.log(data);
+                        const url = 'https://green-peppermint-quarter.glitch.me/movies/' + id;
+                        const options = {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        };
+                        fetch(url, options)
+                            .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
+                            .catch(error => console.error(error)); /* handle errors */
+                    })
+                })
+            }
+
+
+            const apiKey = 'd684bbda';
+
+            //function searches OMDB for a movie and then populates glitch with results
+            function searchMovie(movie) {
+                fetch(`http://www.omdbapi.com/?t=${movie}&apikey=${apiKey}&`).then((response) => {
+                    response.json().then((data) => {
+                        let newMovie = data;
+                        const url = 'https://green-peppermint-quarter.glitch.me/movies';
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newMovie)
+                        };
+                        fetch(url, options)
+                            .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
+                            .catch(error => console.error(error)); /* handle errors */
+                    })
+                })
+            }
+
+            $('.movieSearch').click(function (e) {
+                e.preventDefault();
+                searchMovie($('.movieSearchBar').val());
+                setTimeout(function () {
+                    loadMovies();
+                }, 1000)
             })
-        })
-    }
 
+            $(`#deleteButton`).click(function (e) {
+                e.preventDefault();
+                console.log('ran delete function')
+                deleteMovie($('.deleteButton').val());
+                setTimeout(() => {
+                    loadMovies();
+                }, 1000);
+            })
 
-    const apiKey = 'd684bbda';
+            $('.editButton').click(function (e) {
+                console.log("edit button");
+            })
 
-    //function searches OMDB for a movie and then populates glitch with results
-    function searchMovie(movie) {
-        fetch(`http://www.omdbapi.com/?t=${movie}&apikey=${apiKey}&`).then((response) => {
-            response.json().then((data) => {
-                let newMovie = data;
+            function deleteMovie(id) {
+                fetch('https://green-peppermint-quarter.glitch.me/movies/' + id).then((response) => {
+                    response.json().then((data) => {
+                        console.log(data);
+                        const url = 'https://green-peppermint-quarter.glitch.me/movies/' + id;
+                        const options = {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        };
+                        fetch(url, options)
+                            .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
+                            .catch(error => console.error(error)); /* handle errors */
+                    })
+                })
+            }
+
+            // deleteMovie(9);
+            // deleteMovie(10);
+
+            function addMovie() {
+                let newMovie = {
+                    Title: $('#movie-title').val(),
+                    Year: $('#year-released').val(),
+                    Ratings: [
+                        {
+                            Value: $('#movie-rating').val()
+                        }
+                    ],
+                    Genre: $('#movie-genre').val(),
+                    Plot: $('#movie-description').val(),
+                    Poster: 'https://placeholder.pics/svg/1000x1000'
+                }
                 const url = 'https://green-peppermint-quarter.glitch.me/movies';
                 const options = {
                     method: 'POST',
@@ -116,9 +202,33 @@ $(document).ready(() => {
                 fetch(url, options)
                     .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
                     .catch(error => console.error(error)); /* handle errors */
+                setTimeout(function () {
+                    loadMovies();
+                }, 1000)
+            }
+
+            $('#createNewMovie').click(function (e) {
+                e.preventDefault();
+                addMovie();
             })
-        })
-    }
+
+ Wilmarie-DeLaCruz
+            //modal functions
+            const exampleModal = document.getElementById('exampleModal')
+            exampleModal.addEventListener('show.bs.modal', event => {
+                // Button that triggered the modal
+                const button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                const recipient = button.getAttribute('data-bs-whatever')
+                // If necessary, you could initiate an AJAX request here
+                // and then do the updating in a callback.
+                //
+                // Update the modal's content.
+                const modalTitle = exampleModal.querySelector('.modal-title')
+                const modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+                modalTitle.textContent = `New Movie`
+                modalBodyInput.value = recipient
 
     $('.movieSearch').click(function (e) {
         e.preventDefault();
@@ -149,63 +259,25 @@ $(document).ready(() => {
                 fetch(url, options)
                     .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
                     .catch(error => console.error(error)); /* handle errors */
+
             })
-        })
+        })}})
+function applyTheme(theme) {
+    document.body.classList.remove("theme-auto", "theme-light", "theme-dark");
+    document.body.classList.add(`theme-${theme}`);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme") || "auto";
+
+    applyTheme(savedTheme);
+
+    for (const optionElement of document.querySelectorAll("#selTheme option")) {
+        optionElement.selected = savedTheme === optionElement.value;
     }
 
-    // deleteMovie(9);
-    // deleteMovie(10);
-
-    function addMovie() {
-        let newMovie = {
-            Title: $('#movie-title').val(),
-            Year: $('#year-released').val(),
-            Ratings: [
-                {
-                    Value: $('#movie-rating').val()
-                }
-            ],
-            Genre: $('#movie-genre').val(),
-            Plot: $('#movie-description').val(),
-            Poster: 'https://placeholder.pics/svg/1000x1000'
-        }
-        const url = 'https://green-peppermint-quarter.glitch.me/movies';
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newMovie)
-        };
-        fetch(url, options)
-            .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
-            .catch(error => console.error(error)); /* handle errors */
-        setTimeout(function () {
-            loadMovies();
-        }, 1000)
-    }
-
-    $('#createNewMovie').click(function (e) {
-        e.preventDefault();
-        addMovie();
-    })
-
-    //modal functions
-    const exampleModal = document.getElementById('exampleModal')
-    exampleModal.addEventListener('show.bs.modal', event => {
-        // Button that triggered the modal
-        const button = event.relatedTarget
-        // Extract info from data-bs-* attributes
-        const recipient = button.getAttribute('data-bs-whatever')
-        // If necessary, you could initiate an AJAX request here
-        // and then do the updating in a callback.
-        //
-        // Update the modal's content.
-        const modalTitle = exampleModal.querySelector('.modal-title')
-        const modalBodyInput = exampleModal.querySelector('.modal-body input')
-
-        modalTitle.textContent = `New Movie`
-        modalBodyInput.value = recipient
-    })
-})
-
+    document.querySelector("#selTheme").addEventListener("change", function () {
+        localStorage.setItem("theme", this.value);
+        applyTheme(this.value);
+    });
+});
