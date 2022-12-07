@@ -104,7 +104,7 @@ $(document).ready(() => {
                         </div>
                     </div>
     <div class=" d-flex col-2" id="movie" style="height: 450px; width: 300px;">
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 30rem;" >
             <div class="flip-card">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -116,14 +116,10 @@ $(document).ready(() => {
                         <p class="card-text">Ratings: ${movie.Ratings[0].Value}</p>
                         <p class="card-text"> Genre: ${movie.Genre}</p>
                         <div class="card-icons">
-                            <button type="button" class="btn btn-primary"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#movie${movie.id}">
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#movie${movie.id}">
                                 Edit
                             </button>
-                            <button type="submit"
-                                    class="btn btn-danger deleteButton"
-                                    value="${movie.id}">
+                            <button type="submit" class="btn deleteButton btn-dark" value="${movie.id}">
                                 Delete
                                 <i class="bi bi-trash3"></i>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20"
