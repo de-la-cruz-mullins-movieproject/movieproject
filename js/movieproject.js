@@ -258,8 +258,8 @@ $(document).ready(() => {
 
 
 
-                modalTitle.textContent = `New Movie`
-                modalBodyInput.value = recipient
+                // modalTitle.textContent = `New Movie`
+                // modalBodyInput.value = recipient
 
 
     $('.editButton').click(function (e) {
