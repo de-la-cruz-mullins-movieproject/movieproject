@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Movie Project</title>
@@ -13,15 +13,13 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-red.css">
 </head>
 <body>
-<video class="video-bg" controls autoplay muted width="100%" height="100%">
+<video class="video-bg" controls autoplay muted loop width="100%" height="100%">
 
       <source src="istockphoto-656747382-640_adpp_is.mp4" type="video/mp4">
 </video>
 
 
-<!--        <li class="w3-theme-d5">-->
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none">
     <div class="container-fluid p-0 row gx-3">
         <div class="d-flex">
             <!--Movie genre dropdown-->
@@ -68,10 +66,9 @@
             </div>
 
             <!--Movie title input-->
-            <div class="input-group mb-3 btn-danger col" style="width: 10%">
+            <div class="input-group btn-danger col">
                 <span class="input-group-text w3-theme-d5" id="inputGroup-sizing-default">Enter Movie Name Here:</span>
-                <input type="text" class="form-control userSearchName " style="width: 10px" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default">
+                <input type="text" class="form-control userSearchName p-1">
             </div>
             <div class="">
             <button type="button" class="btn w3-theme-d5 col " data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -129,7 +126,7 @@
     <!--Navbar end-->
 <!--loader-->
     <div class="col justify-content-center">
-        <div class="loader"><h1> Loading...</h1></div>
+        <div class="loader"><h1 style="font-size:60px;"> Loading...</h1></div>
 
         <div class="row">
             <div class="col-12 d-flex flex-wrap justify-content-evenly" id="movieContainer">

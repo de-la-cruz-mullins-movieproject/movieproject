@@ -14,6 +14,8 @@ $(document).ready(() => {
         $('#movieContainer').html('');
         fetch('https://green-peppermint-quarter.glitch.me/movies').then((response) => {
             $('.loader').addClass('d-none');
+            $('nav').removeClass('d-none');
+
             response.json().then((data) => {
                 console.log(data);
                 data.forEach((movie) => {
