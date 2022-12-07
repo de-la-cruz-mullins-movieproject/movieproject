@@ -46,7 +46,14 @@ $(document).ready(() => {
     function createMovieCards(filteredMovies) {
         filteredMovies.forEach((movie) => {
             $('#movieContainer').append(
-                `<div class=" d-flex col-2" id="movie">
+
+                `<div class=" d-flex col-2" id="movie"  style="height: 450px; width: 300px;" >
+                    <div class="card" style="width: 30rem;" >
+                    <div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+
+                <div class=" d-flex col-2" id="movie">
                     <div class="card">
                         <img src="${movie.Poster}" class="card-img-top" alt="poster">
                             <div class="card-body">
@@ -54,6 +61,14 @@ $(document).ready(() => {
                                 <p class="card-text">${movie.Plot}</p>
                                 <p class="card-text">Ratings: ${movie.Ratings[0].Value}</p>
                                 <p class="card-text"> Genre: ${movie.Genre}</p>
+                                <div class="card-icons" style="width: 60px">
+                                <button type="button" class="btn btn-warning editButton"> 
+                                <div class="modal-dialog modal-lg">
+                                Edit <i class="bi bi-pencil-square "></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="0" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+</svg>
                                 <div class="card-icons">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#movie${movie.id}">
                                 Edit 
@@ -90,6 +105,7 @@ $(document).ready(() => {
     </div>
   </div>
 </div>
+</button>
 <button type="submit" class="btn btn-danger deleteButton" value="${movie.id}">Delete 
 <i class="bi bi-trash3"></i>
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
@@ -97,9 +113,29 @@ $(document).ready(() => {
 </svg>
 </button>
 </div>
-</div>
-</div>
-</div>`);
+
+                            </div>
+                    </div>`,)
+
+            function editMovie(id) {
+                fetch('https://green-peppermint-quarter.glitch.me/movies/' + id).then((response) => {
+                    response.json().then((data) => {
+                        console.log(data);
+                        const url = 'https://green-peppermint-quarter.glitch.me/movies/' + id;
+                        const options = {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        };
+                        fetch(url, options)
+                            .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
+                            .catch(error => console.error(error)); /* handle errors */
+                    })
+                })
+            }
+
             $(".moviePlotEdit" + movie.id).append(`${movie.Plot}`);
             $('.submitEdits').click(function (e) {
                 e.preventDefault();
@@ -139,35 +175,94 @@ $(document).ready(() => {
     }
 
 
+
     const apiKey = 'd684bbda';
 
-    //function searches OMDB for a movie and then populates glitch with results
-    function searchMovie(movie) {
-        fetch(`http://www.omdbapi.com/?t=${movie}&apikey=${apiKey}&`).then((response) => {
-            response.json().then((data) => {
-                let newMovie = data;
-                const url = 'https://green-peppermint-quarter.glitch.me/movies';
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(newMovie)
-                };
-                fetch(url, options)
-                    .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
-                    .catch(error => console.error(error)); /* handle errors */
-            })
-        })
-    }
 
-    $('.movieSearch').click(function (e) {
-        e.preventDefault();
-        searchMovie($('.movieSearchBar').val());
-        setTimeout(function () {
-            loadMovies();
-        }, 1000)
-    })
+            //function searches OMDB for a movie and then populates glitch with results
+            function searchMovie(movie) {
+                fetch(`http://www.omdbapi.com/?t=${movie}&apikey=${apiKey}&`).then((response) => {
+                    response.json().then((data) => {
+                        let newMovie = data;
+                        const url = 'https://green-peppermint-quarter.glitch.me/movies';
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newMovie)
+                        };
+                        fetch(url, options)
+                            .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
+                            .catch(error => console.error(error)); /* handle errors */
+                    })
+                })
+            }
+
+            $('.movieSearch').click(function (e) {
+                e.preventDefault();
+                searchMovie($('.movieSearchBar').val());
+                setTimeout(function () {
+                    loadMovies();
+                }, 1000)
+            })
+
+            $(`#deleteButton`).click(function (e) {
+                e.preventDefault();
+                console.log('ran delete function')
+                deleteMovie($('.deleteButton').val());
+                setTimeout(() => {
+                    loadMovies();
+                }, 1000);
+            })
+
+            $('.editButton').click(function (e) {
+                console.log("edit button");
+            })
+
+            function deleteMovie(id) {
+                fetch('https://green-peppermint-quarter.glitch.me/movies/' + id).then((response) => {
+                    response.json().then((data) => {
+                        console.log(data);
+                        const url = 'https://green-peppermint-quarter.glitch.me/movies/' + id;
+                        const options = {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        };
+                        fetch(url, options)
+                            .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
+                            .catch(error => console.error(error)); /* handle errors */
+                    })
+                })
+            }
+
+            // deleteMovie(9);
+            // deleteMovie(10);
+
+            function addMovie() {
+                let newMovie = {
+                    Title: $('#movie-title').val(),
+                    Year: $('#year-released').val(),
+                    Ratings: [
+                        {
+                            Value: $('#movie-rating').val()
+                        }
+                    ],
+                    Genre: $('#movie-genre').val(),
+                    Plot: $('#movie-description').val(),
+                    Poster: 'https://placeholder.pics/svg/1000x1000'
+                }
+
+            }
+                //function searches OMDB for a movie and then populates glitch with results
+
+
+
+                // modalTitle.textContent = `New Movie`
+                // modalBodyInput.value = recipient
 
 
     $('.editButton').click(function (e) {
@@ -189,9 +284,16 @@ $(document).ready(() => {
                 fetch(url, options)
                     .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
                     .catch(error => console.error(error)); /* handle errors */
+
             })
         })
     }
+
+
+    document.querySelector("#selTheme").addEventListener("change", function () {
+        localStorage.setItem("theme", this.value);
+        applyTheme(this.value);
+    });
 
     // deleteMovie(18);
     // deleteMovie(17);
@@ -230,5 +332,7 @@ $(document).ready(() => {
     $('#createNewMovie').click(function (e) {
         e.preventDefault();
         addMovie();
+
+
     })
-})
+
