@@ -14,12 +14,12 @@ $(document).ready(() => {
             response.json().then((data) => {
                 console.log(data);
                 data.forEach((movie) => {
-                    if (typeof movie.Ratings[0].Value === 'string') {
+                    // if (movie.Ratings[0].Value == null) {
+                    //     movie.Ratings[0].Value = 0;
+                    //     currentMovies.push(movie);
+                    // } else {
                         currentMovies.push(movie);
-                    } else {
-                        movie.Ratings[0].Value = 0;
-                        currentMovies.push(movie);
-                    }
+                    // }
                 })
                 filterMovies(currentMovies);
             })
@@ -39,7 +39,6 @@ $(document).ready(() => {
     $('.genreDropdown').change(() => loadMovies());
     $('.userSearchName').keyup(() => loadMovies());
     $('.ratingDropdown').change(() => loadMovies());
-
 
     function createMovieCards(filteredMovies) {
         filteredMovies.forEach((movie) => {
@@ -192,6 +191,8 @@ $(document).ready(() => {
     }
 
     // deleteMovie(18);
+    // deleteMovie(17);
+    // deleteMovie(16);
 
 
     function addMovie() {
