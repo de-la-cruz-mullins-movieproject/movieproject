@@ -2,10 +2,13 @@
 
 $(document).ready(() => {
 
+    //2 second timer that enables loading spinner to show before data populates
     setTimeout(() => {
         loadMovies();
     }, 2000);
 
+
+    //starts movie population process - removes loader - fetch request for movies in glitch database and then adds raings value if none is present
     function loadMovies() {
         let currentMovies = [];
         $('#movieContainer').html('');
@@ -14,11 +17,11 @@ $(document).ready(() => {
             response.json().then((data) => {
                 console.log(data);
                 data.forEach((movie) => {
-                    // if (movie.Ratings[0].Value == null) {
-                    //     movie.Ratings[0].Value = 0;
-                    //     currentMovies.push(movie);
+                    // if (movie.Ratings[0].hasOwnProperty('Value')) {
+                    currentMovies.push(movie);
                     // } else {
-                        currentMovies.push(movie);
+                    //     movie.Ratings.push({Value: '0/0'});
+                    //     currentMovies.push(movie);
                     // }
                 })
                 filterMovies(currentMovies);
@@ -97,7 +100,7 @@ $(document).ready(() => {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary submitEdits" value="${movie.id}">Save changes</button>
+        <button class="btn btn-primary submitEdits" value="${movie.id}" data-bs-dismiss="modal">Save changes</button>
       </div>
     </div>
   </div>
@@ -332,5 +335,4 @@ $(document).ready(() => {
 
 
     })
-});
 
