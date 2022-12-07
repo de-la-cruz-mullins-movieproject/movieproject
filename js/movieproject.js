@@ -14,7 +14,12 @@ $(document).ready(() => {
             response.json().then((data) => {
                 console.log(data);
                 data.forEach((movie) => {
-                    currentMovies.push(movie);
+                    if (typeof movie.Ratings[0].Value === 'string') {
+                        currentMovies.push(movie);
+                    } else {
+                        movie.Ratings[0].Value = 0;
+                        currentMovies.push(movie);
+                    }
                 })
                 filterMovies(currentMovies);
             })
@@ -48,10 +53,10 @@ $(document).ready(() => {
                                 <p class="card-text">Ratings: ${movie.Ratings[0].Value}</p>
                                 <p class="card-text"> Genre: ${movie.Genre}</p>
                                 <div class="card-icons">
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#${movie.Title}">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#movie${movie.id}">
                                 Edit 
 </button>
-<div class="modal fade" id="${movie.Title}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="movie${movie.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -61,24 +66,24 @@ $(document).ready(() => {
       <div class="modal-body">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">Title</span>
-              <input type="text" class="form-control movieTitleEdit" aria-describedby="basic-addon1" value="${movie.Title}">
+              <input type="text" class="form-control movieTitleEdit${movie.id}" aria-describedby="basic-addon1" value="${movie.Title}">
             </div>
             <div class="input-group">
               <span class="input-group-text">Plot</span>
-              <textarea class="form-control moviePlotEdit" aria-label="With textarea"></textarea>
+              <textarea class="form-control moviePlotEdit${movie.id}" aria-label="With textarea"></textarea>
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">Ratings</span>
-              <input type="text" class="form-control movieRatingsEdit" aria-describedby="basic-addon1" value="${movie.Ratings[0].Value}">
+              <input type="text" class="form-control movieRatingsEdit${movie.id}" aria-describedby="basic-addon1" value="${movie.Ratings[0].Value}">
             </div>
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">Genre</span>
-              <input type="text" class="form-control movieGenreEdit" aria-describedby="basic-addon1" value="${movie.Genre}">
+              <input type="text" class="form-control movieGenreEdit${movie.id}" aria-describedby="basic-addon1" value="${movie.Genre}">
             </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary submitEdits">Save changes</button>
+        <button class="btn btn-primary submitEdits" value="${movie.id}">Save changes</button>
       </div>
     </div>
   </div>
@@ -93,20 +98,16 @@ $(document).ready(() => {
 </div>
 </div>
 </div>`);
-            $(".moviePlotEdit").append(`${movie.Plot}`);
-            $('.submitEdits').click(function(e){
+            $(".moviePlotEdit" + movie.id).append(`${movie.Plot}`);
+            $('.submitEdits').click(function (e) {
                 e.preventDefault();
                 let data = {
-                    Title: $('.movieTitleEdit').val(),
-                    Ratings: [
-                        {
-                            Value: $('.movieRatingEdit').val()
-                        }
-                        ],
-                    Plot: $('.moviePlotEdit').val(),
-                    Genre: $('.movieGenreEdit').val()
+                    Title: $('.movieTitleEdit' + this.value).val(),
+                    Ratings: [{Value: $('.movieRatingEdit' + this.value).val()}],
+                    Plot: $('.moviePlotEdit' + this.value).val(),
+                    Genre: $('.movieGenreEdit' + this.value).val()
                 };
-                editMovie(data, movie.id);
+                editMovie(data, this.value);
                 setTimeout(() => {
                     loadMovies();
                 }, 1000);
@@ -189,6 +190,9 @@ $(document).ready(() => {
             })
         })
     }
+
+    // deleteMovie(18);
+
 
     function addMovie() {
         let newMovie = {
