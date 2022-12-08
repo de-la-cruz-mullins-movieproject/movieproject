@@ -96,7 +96,7 @@ $(document).ready(() => {
                             </div>
                         </div>
                     </div>
-    <div class="d-flex col-2 m-3" id="movie" style="height: 450px; width: 300px;">
+    <div class="d-flex col-2 m-2" id="movie" style="height: 450px; width: 300px;">
         <div class="card rounded" style="width: 30rem;" >
             <div class="flip-card rounded border border-4 borderBlack">
                 <div class="flip-card-inner rounded border border-4 borderBlack">
@@ -104,10 +104,10 @@ $(document).ready(() => {
                         <img src="${movie.Poster}" class="card-img-top" alt="poster">
                     </div>
                     <div class="flip-card-back rounded border border-4 borderBlack d-flex flex-column justify-content-around">
-                        <h5 class="card-title"><span class="bold">${movie.Title} (${movie.Year})</span></h5>
-                        <p class="card-text">${movie.Plot}</p>
-                        <p class="card-text"><span class="bold">Ratings: </span>${movie.Ratings[0].Value}</p>
-                        <p class="card-text"><span class="bold">Genre: </span>${movie.Genre}</p>
+                        <h4 class="card-title"><span class="bold">${movie.Title} (${movie.Year})</span></h4>
+                        <p class="card-text fs-5">${movie.Plot}</p>
+                        <p class="card-text fs-5"><span class="bold">Ratings: </span>${movie.Ratings[0].Value}</p>
+                        <p class="card-text fs-5"><span class="bold">Genre: </span>${movie.Genre}</p>
                         <div class="card-icons">
                             <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#movie${movie.id}">
                                 Edit 
