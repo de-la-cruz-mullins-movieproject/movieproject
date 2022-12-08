@@ -1,13 +1,9 @@
 // 'use strict';
-
 $(document).ready(() => {
-
     //2-second timer that enables loading spinner to show before data populates
     setTimeout(() => {
         loadMovies();
-    }, 2000);
-
-
+    }, 5000);
     //starts movie population process - removes loader - fetch request for movies in glitch database and then adds ratings value if none is present
     function loadMovies() {
         let currentMovies = [];
@@ -29,7 +25,7 @@ $(document).ready(() => {
             })
         })
     }
-
+    //filters current movies based on user input into filter fields
     function filterMovies(currentMovies) {
         let userSearchName = $('.userSearchName').val();
         let userSearchGenre = $('.genreDropdown').val();
@@ -39,50 +35,46 @@ $(document).ready(() => {
         })
         createMovieCards(filteredMovies);
     }
-
+    $('.filterButton').click(() => $('.filter').toggleClass('d-none'));
+    //runs loadMovies function when user changes filter fields
     $('.genreDropdown').change(() => loadMovies());
     $('.userSearchName').keyup(() => loadMovies());
     $('.ratingDropdown').change(() => loadMovies());
-
+    //takes in array after the movies are filtered and populates the cards
     function createMovieCards(filteredMovies) {
         filteredMovies.forEach((movie) => {
             $('#movieContainer').append(
-                `    <div class="modal fade" id="movie${movie.id}" tabindex="0" aria-labelledby="exampleModalLabel"
+                `<div class="modal fade" id="movie${movie.id}" tabindex="0" aria-labelledby="exampleModalLabel"
                              aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">${movie.Title}</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">${movie.Title}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="input-group mb-3">
-                                                                                        <span class="input-group-text"
-                                                                                              id="basic-addon1">Title</span>
+                                            <span class="input-group-text" id="basic-addon1">Title</span>
                                             <input type="text"
                                                    class="form-control movieTitleEdit${movie.id}"
                                                    aria-describedby="basic-addon1"
                                                    value="${movie.Title}">
                                         </div>
                                         <div class="input-group">
-                                                                                                            <span
-                                                                                                                    class="input-group-text">Plot</span>
-                                            <textarea
-                                                    class="form-control moviePlotEdit${movie.id}"
+                                            <span class="input-group-text">Plot</span>
+                                            <textarea class="form-control moviePlotEdit${movie.id}"
                                                     aria-label="With textarea"></textarea>
                                         </div>
                                         <div class="input-group mb-3">
-                                                                                        <span class="input-group-text"
-                                                                                              id="basic-addon1">Ratings</span>
+                                            <span class="input-group-text" id="basic-addon1">Ratings</span>
                                             <input type="text"
                                                    class="form-control movieRatingsEdit${movie.id}"
                                                    aria-describedby="basic-addon1"
                                                    value="${movie.Ratings[0].Value}">
                                         </div>
                                         <div class="input-group mb-3">
-                                                                                        <span class="input-group-text"
-                                                                                              id="basic-addon1">Genre</span>
+                                            <span class="input-group-text" id="basic-addon1">Genre</span>
                                             <input type="text"
                                                    class="form-control movieGenreEdit${movie.id}"
                                                    aria-describedby="basic-addon1"
@@ -104,32 +96,26 @@ $(document).ready(() => {
                             </div>
                         </div>
                     </div>
-    <div class=" d-flex col-2 m-3" id="movie" style="height: 450px; width: 300px;">
-        <div class="card" style="width: 30rem;" >
-            <div class="flip-card border border-3 border-dark">
-                <div class="flip-card-inner border border-3 border-dark">
-                    <div class="flip-card-front border border-3 border-dark">
+    <div class="d-flex col-2 m-3" id="movie" style="height: 450px; width: 300px;">
+        <div class="card rounded" style="width: 30rem;" >
+            <div class="flip-card rounded border border-4 borderBlack">
+                <div class="flip-card-inner rounded border border-4 borderBlack">
+                    <div class="flip-card-front rounded border border-4 borderBlack">
                         <img src="${movie.Poster}" class="card-img-top" alt="poster">
                     </div>
-                    <div class="flip-card-back border border-3 border-dark">
-                        <h5 class="card-title">${movie.Title} (${movie.Year}) </h5>
+                    <div class="flip-card-back rounded border border-4 borderBlack d-flex flex-column justify-content-around">
+                        <h5 class="card-title"><span class="bold">${movie.Title} (${movie.Year})</span></h5>
                         <p class="card-text">${movie.Plot}</p>
-                        <p class="card-text">Ratings: ${movie.Ratings[0].Value}</p>
-                        <p class="card-text"> Genre: ${movie.Genre}</p>
+                        <p class="card-text"><span class="bold">Ratings: </span>${movie.Ratings[0].Value}</p>
+                        <p class="card-text"><span class="bold">Genre: </span>${movie.Genre}</p>
                         <div class="card-icons">
                             <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#movie${movie.id}">
-                                Edit
+                                Edit 
+                                <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                             <button type="submit" class="btn deleteButton btn-dark" value="${movie.id}">
-                                Delete
-                                <i class="bi bi-trash3"></i>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                     height="20"
-                                     fill="currentColor" class="bi bi-trash3"
-                                     viewBox="0 0 16 16">
-                                    <path
-                                            d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                                </svg>
+                                Delete 
+                                <i class="fa-solid fa-trash"></i>
                             </button>
                         </div>
                 </div>
@@ -149,17 +135,17 @@ $(document).ready(() => {
             editMovie(data, this.value);
             setTimeout(() => {
                 loadMovies();
-            }, 1000);
+            }, 800);
         })
         $(`.deleteButton`).click(function (e) {
             e.preventDefault();
             deleteMovie(this.value);
             setTimeout(() => {
                 loadMovies();
-            }, 1000);
+            }, 800);
         })
     }
-
+    //sends patch request to glicth based on user inputs into card modal
     function editMovie(data, id) {
         const url = 'https://green-peppermint-quarter.glitch.me/movies/' + id;
         const options = {
@@ -173,10 +159,6 @@ $(document).ready(() => {
             .then(response => response.json()).then(data => console.log(data)) /* review was created successfully */
             .catch(error => console.error(error)); /* handle errors */
     }
-
-
-    const apiKey = 'd684bbda';
-
     //function searches OMDB for a movie and then populates glitch with results
     function searchMovie(movie) {
         fetch(`http://www.omdbapi.com/?t=${movie}&apikey=${apiKey}&`).then((response) => {
@@ -200,7 +182,7 @@ $(document).ready(() => {
             })
         }).catch(error => console.error(error))
     }
-
+    //runs omdb search function on button click
     $('.movieSearch').click(function (e) {
         e.preventDefault();
         searchMovie($('.movieSearchBar').val());
@@ -211,7 +193,7 @@ $(document).ready(() => {
     $('.editButton').click(function (e) {
         console.log("edit button");
     })
-
+    //sends delete request when user clicks delete button
     function deleteMovie(id) {
         fetch('https://green-peppermint-quarter.glitch.me/movies/' + id).then((response) => {
             response.json().then((data) => {
@@ -230,12 +212,7 @@ $(document).ready(() => {
             })
         })
     }
-
-    // deleteMovie(30);
-    // deleteMovie(28);
-    // deleteMovie(29);
-
-
+    //inputs custom movie into glitch database based on user inputs into modal
     function addMovie() {
         let newMovie = {
             Title: $('#movie-title').val(),
@@ -262,10 +239,10 @@ $(document).ready(() => {
             .catch(error => console.error(error)); /* handle errors */
         setTimeout(function () {
             loadMovies();
-        }, 1000)
+        }, 400)
     }
-
-    $('#createNewMovie').click(function (e) {
+    //runs create function when button is clicked
+    $('#createNewMovie').click((e) => {
         e.preventDefault();
         addMovie();
     })

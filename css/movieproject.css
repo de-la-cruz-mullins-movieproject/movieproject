@@ -2,16 +2,19 @@ body {
     background: #eaecfa;
 }
 
+html, body {
+    font-family: 'Londrina Solid', cursive;
+}
+
 .loader {
     width: 250px;
     height: 50px;
     line-height: 50px;
     text-align: center;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 25%;
+    left: 25%;
     transform: translate(-50%, -50%);
-    font-family: helvetica, arial, sans-serif;
     text-transform: uppercase;
     font-weight: 900;
     color: #ce4233;
@@ -20,8 +23,8 @@ body {
 .loader::before, .loader::after {
     content: "";
     display: block;
-    width: 15px;
-    height: 15px;
+    width: 50px;
+    height: 50px;
     background: #ce4233;
     position: absolute;
     -webkit-animation: load 0.7s infinite alternate ease-in-out;
@@ -74,10 +77,9 @@ body {
     padding: 10px;
 }
 
-
 .card-icons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 .btn-group {
     display: inline-block;
@@ -87,11 +89,10 @@ body {
 .flip-card {
     background-color: black;
     width: 300px;
-    height: 500px;
+    height: 450px;
     /*border: 1px solid #f1f1f1;*/
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
-
 
 /* This container is needed to position the front and back side */
 .flip-card-inner {
@@ -130,15 +131,6 @@ body {
     transform: rotateY(180deg);
 }
 
-
-.input-group {
-    height: 10%;
-    margin-right: 10px;
-}
-
-.form-control {
-    float: right;
-}
 .video-bg {
     position: fixed;
     right: 0;
@@ -149,4 +141,27 @@ body {
 
 .card {
     border: none;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.borderBlack {
+    border: 4px solid black !important;
+}
+
+select option {
+    background-color: black !important;
+    color: white !important;
+}
+
+.darkRedColor {
+    background-color: #8D1008 !important;
+    color: white !important;
+}
+
+.modal-content {
+    background-color: black;
+    color: white;
 }
